@@ -1,3 +1,16 @@
+
+function getAge(dateString) 
+{
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+    return age;
+}
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
@@ -19,20 +32,45 @@ export const userColumns = [
     headerName: "Email",
     width: 230,
   },
-
+  
   {
-    field: "age",
+    field:"birthDate",
     headerName: "Age",
+    width: 100,
+    renderCell: (params) => {
+      let currentDate= new Date();
+           return (
+        <div className="cellWithImg">
+          {new Date(params.row.birthDate).getFullYear()==null ?(
+          <div></div>)
+           :(
+
+             currentDate.getFullYear()-new Date(params.row.birthDate).getFullYear()
+           )
+          }
+         </div>
+      );
+    },
+  },
+  {
+    field: "city",
+    headerName: "City",
     width: 100,
   },
   {
-    field: "status",
-    headerName: "Status",
+    field: "Gender",
+    headerName: "Gender",
     width: 160,
     renderCell: (params) => {
       return (
-        <div className={`cellWithStatus ${params.row.status}`}>
-          {params.row.status}
+        <div className={`cellWithStatus ${params.row.male ? "true" :"false"}`}>
+          {params.row.male==null
+           ? (<div>_</div>)
+            :(
+              <div>{params.row.male==true ? "male" : "female"}</div>
+            )
+          }
+           
         </div>
       );
     },

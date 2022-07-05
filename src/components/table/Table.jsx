@@ -6,8 +6,29 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useLocation } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { getDoc ,doc} from "firebase/firestore";
+import { db } from "../../firebase";
 
-const List = () => {
+const List = ({id}) => {
+  
+   
+    
+    const [orders, setorders] = useState(null)
+    const handlorders = async () => {
+      const docRef = doc(db, "orders", id);
+      try {
+        const docSnap = await getDoc(docRef);
+        setorders(docSnap.data());
+    } catch(error) {
+        console.log(error)
+    }
+   
+  }
+    useEffect(() => {
+      handlorders();
+    }, [id]);
   const rows = [
     {
       id: 1143155,
@@ -84,7 +105,7 @@ const List = () => {
                   {row.product}
                 </div>
               </TableCell>
-              <TableCell className="tableCell">{row.customer}</TableCell>
+              <TableCell className="tableCell">{orders?.distance}</TableCell>
               <TableCell className="tableCell">{row.date}</TableCell>
               <TableCell className="tableCell">{row.amount}</TableCell>
               <TableCell className="tableCell">{row.method}</TableCell>
