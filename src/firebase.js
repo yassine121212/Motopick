@@ -3,15 +3,14 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-
-const firebaseConfig = { 
-  apiKey: "AIzaSyDxVPCrJjMi6x2f5OpSkR4oP44FUr-yS8A",
-  authDomain: "moto-b4cb8.firebaseapp.com",
-  databaseURL: "https://moto-b4cb8-default-rtdb.firebaseio.com",
-  projectId: "moto-b4cb8",
-  storageBucket: "moto-b4cb8.appspot.com",
-  messagingSenderId: "818205108592",
-  appId: "1:818205108592:web:a6bb02f382937cffb0c7b5"
+const firebaseConfig = {
+  apiKey:process.env.React_app_firebase_key,
+  authDomain: "motopickup-353120.firebaseapp.com",
+  projectId: "motopickup-353120",
+  storageBucket: "motopickup-353120.appspot.com",
+  messagingSenderId: "641117441433",
+  appId: "1:641117441433:web:ed237802ab6ab210d4d708",
+  measurementId: "G-ESLT23JMY4"
 };
 
 const app = initializeApp(firebaseConfig);
