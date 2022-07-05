@@ -63,10 +63,10 @@ const New = ({ inputs, title }) => {
   console.log(data);
 
   const handleInput = (e) => {
-    const id = e.target.id;
+    const name = e.target.name;
     const value = e.target.value;
 
-    setData({ ...data, [id]: value });
+    setData({ ...data, [name]: value });
   };
 
   const handleAdd = async (e) => {
@@ -127,6 +127,7 @@ const New = ({ inputs, title }) => {
                     id={input.id}
                     type={input.type}
                     placeholder={input.placeholder}
+                    name={input.name}
                     onChange={handleInput}
                   />
                 </div>

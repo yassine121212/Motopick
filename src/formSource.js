@@ -4,10 +4,11 @@ export const userInputs = [
       label: "Username",
       type: "text",
       placeholder: "john_doe",
+      name:"name"
     },
     {
       id: 2,
-      label: "Name and surname",
+      label: "birthday",
       type: "text",
       placeholder: "John Doe",
     },
