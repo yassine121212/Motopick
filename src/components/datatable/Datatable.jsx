@@ -11,10 +11,11 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "../../firebase";
-
+import Spiner from "../Spiner/Spiner"
 const Datatable = () => {
   const [data, setData] = useState([]);
-
+  const [loading, setloading] = useState(false);
+  
   useEffect(() => {
     // const fetchData = async () => {
     //   let list = [];
@@ -32,23 +33,31 @@ const Datatable = () => {
     // fetchData();
 
     // LISTEN (REALTIME)
+    
     const unsub = onSnapshot(
+    
       collection(db, "users"),
       (snapShot) => {
+        
         let list = [];
         snapShot.docs.forEach((doc) => {
           list.push({ id: doc.id, ...doc.data() });
         });
         setData(list);
+        
       },
       (error) => {
         console.log(error);
       }
     );
-
+     
     return () => {
+ 
       unsub();
+      
     };
+    setloading(false)
+
   }, []);
 
   const handleDelete = async (id) => {
@@ -85,19 +94,23 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User ccc
+        Add New User
         <Link to="/users/new" className="link">
           Add New
         </Link>
       </div>
-      <DataGrid
+      {loading && (
+        <Spiner/>
+      )}
+      {!loading && (<DataGrid
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
-      />
+      />)}
+     
     </div>
   );
 };

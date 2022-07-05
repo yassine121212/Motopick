@@ -7,12 +7,13 @@ export const userColumns = [
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img} alt="avatar" />
-          {params.row.username}
+          <img className="cellImg" src={params.row.photoUrl} alt="avatar" />
+          {params.row.name}
         </div>
       );
     },
   },
+  
   {
     field: "email",
     headerName: "Email",
