@@ -1,7 +1,7 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   collection,
@@ -15,7 +15,12 @@ import Spiner from "../Spiner/Spiner"
 const Datatable = () => {
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(false);
-  
+  const navigate = useNavigate();
+
+  const toview=(id)=>{
+    navigate("/users/test", { state: { id } });
+
+  }
   useEffect(() => {
     // const fetchData = async () => {
     //   let list = [];
@@ -77,10 +82,10 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <div onClick={()=>toview(params.row.id)} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
-            </Link>
-            <div
+            </div>
+             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
             >
@@ -99,6 +104,7 @@ const Datatable = () => {
           Add New
         </Link>
       </div>
+
       {loading && (
         <Spiner/>
       )}
@@ -106,7 +112,7 @@ const Datatable = () => {
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
-        pageSize={9}
+        pageSize={10}
         rowsPerPageOptions={[9]}
         checkboxSelection
       />)}
