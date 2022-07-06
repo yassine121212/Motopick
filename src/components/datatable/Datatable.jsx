@@ -1,5 +1,5 @@
 import "./datatable.scss";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { userColumns, userRows } from "../../datatablesource";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -115,6 +115,8 @@ const Datatable = () => {
         pageSize={10}
         rowsPerPageOptions={[9]}
         checkboxSelection
+        components={{ Toolbar: GridToolbar }} 
+
       />)}
      
     </div>
