@@ -1,6 +1,7 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
+import Orders from "./pages/Orders/Orders";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -58,6 +59,18 @@ function App() {
                   </RequireAuth>
                 }
               />
+            </Route>
+            <Route path="orders">
+              <Route
+                index
+                element={
+                  <RequireAuth>
+                    <Orders />
+                  </RequireAuth>
+                }
+              />
+             
+            
             </Route>
             <Route path="products">
               <Route

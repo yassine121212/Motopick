@@ -81,6 +81,36 @@ export const userColumns = [
   },
 ];
 
+export const ordersColumns = [
+  { field: "uid", headerName: "ID", width: 70 },
+  {
+    field: "status",
+    headerName: "status",
+    width: 230,
+  },
+  
+  {
+    field: "from",
+    headerName: "from",
+    width: 230,
+  },
+  
+  {
+    field:"distance",
+    headerName: "distance",
+    width: 100,
+           
+          
+  
+  },
+  {
+    field: "price",
+    headerName: "price",
+    width: 100,
+  },
+ 
+];
+
 //temporary data
 export const userRows = [
   {
