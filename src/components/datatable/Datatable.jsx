@@ -12,8 +12,12 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import Spiner from "../Spiner/Spiner"
+
+
 const Datatable = () => {
   const [data, setData] = useState([]);
+  const [listorders, setlistorders] = useState([]);
+
   const [loading, setloading] = useState(false);
   const navigate = useNavigate();
 
@@ -21,6 +25,8 @@ const Datatable = () => {
     navigate("/users/test", { state: { id } });
 
   }
+  // console.log(collection(db, "users").Doc("2BsvvTXA8vOMKaY213YwqUimYbH2"))
+   
   useEffect(() => {
     // const fetchData = async () => {
     //   let list = [];
@@ -38,7 +44,6 @@ const Datatable = () => {
     // fetchData();
 
     // LISTEN (REALTIME)
-    
     const unsub = onSnapshot(
     
       collection(db, "users"),
@@ -47,9 +52,9 @@ const Datatable = () => {
         let list = [];
         snapShot.docs.forEach((doc) => {
           list.push({ id: doc.id, ...doc.data() });
-        });
+         });
         setData(list);
-        
+       
       },
       (error) => {
         console.log(error);
@@ -65,6 +70,11 @@ const Datatable = () => {
 
   }, []);
 
+
+  
+   
+  
+ 
   const handleDelete = async (id) => {
     try {
       await deleteDoc(doc(db, "users", id));
@@ -75,6 +85,22 @@ const Datatable = () => {
   };
 
   const actionColumn = [
+    { field: "order",
+      headerName: "Orders",
+      width: 200,
+      renderCell: (params) => {
+        const numorder =listorders.filter(  
+          item=>  item.owner==params.row.id
+          ).length
+          // console.log(numorder)
+          // console.log(params.row.id )
+        return (
+          <div className="orders">
+             {numorder}
+          </div>
+        );
+      },
+    },
     {
       field: "action",
       headerName: "Action",
@@ -96,6 +122,8 @@ const Datatable = () => {
       },
     },
   ];
+ 
+  
   return (
     <div className="datatable">
       <div className="datatableTitle">
@@ -118,6 +146,8 @@ const Datatable = () => {
         components={{ Toolbar: GridToolbar }} 
 
       />)}
+      
+
      
     </div>
   );

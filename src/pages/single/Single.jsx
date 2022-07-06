@@ -5,13 +5,14 @@ import Chart from "../../components/chart/Chart";
 import List from "../../components/table/Table";
 import { useLocation } from "react-router-dom";
 import { useState,useEffect } from "react";
-import { getDoc ,doc} from "firebase/firestore";
+import { collection,getDoc,getDocs ,doc} from "firebase/firestore";
 import { db } from "../../firebase";
 
  const Single = () => {
   const location = useLocation();
   const [id, setid] = useState(location.state.id);
   const [datauser, setdatauser] = useState(null)
+  const [orders, setorders] = useState([])
   const handluser = async () => {
     const docRef = doc(db, "users", id);
     try {
@@ -22,8 +23,19 @@ import { db } from "../../firebase";
   }
  
 }
-  useEffect(() => {
+ 
+  useEffect( async () => {
      handluser();
+    
+         const orders = collection(db, `users/${id}/orders`)
+        const ordersder = await getDocs(orders)
+        console.log(ordersder)
+        const workInfo = ordersder.docs.map((doc)=>({
+            ...doc.data(), id:doc.id
+        }))
+        setorders(workInfo);
+    
+    
   }, [id]);
   return (
     <div className="single">

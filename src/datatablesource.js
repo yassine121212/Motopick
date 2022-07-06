@@ -58,7 +58,7 @@ export const userColumns = [
     width: 100,
   },
   {
-    field: "Gender",
+    field: "male",
     headerName: "Gender",
     width: 160,
     renderCell: (params) => {
@@ -67,7 +67,11 @@ export const userColumns = [
           {params.row.male==null
            ? (<div>_</div>)
             :(
-              <div>{params.row.male==true ? "male" : "female"}</div>
+              <>
+              <div>{params.row.male &&(<p>male</p>)}</div>
+              <div>{!params.row.male &&(<p>female</p>)}</div>
+
+              </>
             )
           }
            
