@@ -46,7 +46,7 @@ const Dataorders = () => {
     
     const unsub = onSnapshot(
     
-      collection(db, "users"),
+      collection(db, "AdminPanelUsers"),
       (snapShot) => {
         
         let list = [];
@@ -75,7 +75,7 @@ const Dataorders = () => {
 
     const unsub = onSnapshot(
     
-      collection(db, "users"),
+      collection(db, "AdminPanelUsers"),
       (snapShot) => {
         
         let list = [];

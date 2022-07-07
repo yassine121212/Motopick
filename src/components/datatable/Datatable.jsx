@@ -46,7 +46,7 @@ const Datatable = () => {
     // LISTEN (REALTIME)
     const unsub = onSnapshot(
     
-      collection(db, "users"),
+      collection(db, "AdminPanelUsers"),
       (snapShot) => {
         
         let list = [];

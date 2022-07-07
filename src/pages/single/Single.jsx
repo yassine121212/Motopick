@@ -14,7 +14,7 @@ import { db } from "../../firebase";
   const [datauser, setdatauser] = useState(null)
   const [orders, setorders] = useState([])
   const handluser = async () => {
-    const docRef = doc(db, "users", id);
+    const docRef = doc(db, "AdminPanelUsers", id);
     try {
       const docSnap = await getDoc(docRef);
       setdatauser(docSnap.data());
