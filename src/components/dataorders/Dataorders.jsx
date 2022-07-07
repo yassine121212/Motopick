@@ -54,7 +54,7 @@ const Dataorders = () => {
           list.push({ id: doc.id, ...doc.data() });
         });
         setData(list);
-
+        console.log(list);
       },
       (error) => {
         console.log(error);
@@ -71,6 +71,7 @@ const Dataorders = () => {
   }, []);
 
 
+<<<<<<< Updated upstream
   useEffect(() => {
 
     const unsub = onSnapshot(
@@ -99,6 +100,8 @@ const Dataorders = () => {
 
   }, []);
 
+=======
+>>>>>>> Stashed changes
 
 
 
@@ -107,7 +110,7 @@ const Dataorders = () => {
  
        let list= [];
     data.map(async (elem)=>{
-        const workQ = query(collection(db, `users/${elem.id}/orders`))
+        const workQ = query(collection(db, `AdminPanelUsers/${elem.id}/orders`))
         const workDetails = await getDocs(workQ)
         const workInfo = workDetails.docs.map((doc)=>({
             ...doc.data(), id:doc.id
@@ -115,7 +118,7 @@ const Dataorders = () => {
         ),)
         setData1(workInfo);
 
-        console.log(workInfo);
+        console.log(data1);
 
       })
         
@@ -131,10 +134,7 @@ const Dataorders = () => {
         </Link>
       </div>
 
-      {loading && (
-        <Spiner/>
-      )}
-      {!loading && (<DataGrid
+     <DataGrid
         className="datagrid"
         rows={data1}
         columns={ordersColumns}
@@ -143,7 +143,7 @@ const Dataorders = () => {
         checkboxSelection
         components={{ Toolbar: GridToolbar }} 
 
-      />)}
+      />
      
     </div>
   );

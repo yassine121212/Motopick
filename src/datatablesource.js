@@ -51,26 +51,25 @@ export const userColumns = [
     width: 100,
   },
   {
-    field: "male",
+    field: "gender",
     headerName: "Gender",
     width: 160,
-    renderCell: (params) => {
-      return (
-        <div className={`cellWithStatus ${params.row.male ? "true" :"false"}`}>
-          {params.row.male==null
-           ? (<div>_</div>)
-            :(
-              <>
-              <div>{params.row.male &&(<p>male</p>)}</div>
-              <div>{!params.row.male &&(<p>female</p>)}</div>
+    // renderCell: (params) => {
+    //   return (
+    //     <div className={`cellWithStatus ${params.row.male ? "true" :"false"}`}>
+    //       {params.row.male==null
+    //        ? (<div>_</div>)
+    //         :(
+    //           <>
+    //           <div> {params.row.gender}</div>
 
-              </>
-            )
-          }
+    //           </>
+    //         )
+    //       }
            
-        </div>
-      );
-    },
+    //     </div>
+    //   );
+    // },
   },
 ];
 
