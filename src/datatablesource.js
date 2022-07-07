@@ -34,21 +34,14 @@ export const userColumns = [
   },
   
   {
-    field:"birthDate",
+    field:"Age",
     headerName: "Age",
     width: 100,
     renderCell: (params) => {
-      let currentDate= new Date();
-           return (
-        <div className="cellWithImg">
-          {new Date(params.row.birthDate).getFullYear()==null ?(
-          <div></div>)
-           :(
-
-             currentDate.getFullYear()-new Date(params.row.birthDate).getFullYear()
-           )
-          }
-         </div>
+      return (
+        <div>
+         {params.row.Age}  years
+        </div>
       );
     },
   },
