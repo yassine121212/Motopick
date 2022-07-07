@@ -18,7 +18,7 @@ const List = ({id}) => {
     const [orders, setorders] = useState(null)
     useEffect( async () => {
      
-        const orders = collection(db, `users/${id}/orders`)
+        const orders = collection(db, `AdminPanelUsers/${id}/orders`)
         const ordersder = await getDocs(orders)
         console.log(ordersder)
         const workInfo = ordersder.docs.map((doc)=>({

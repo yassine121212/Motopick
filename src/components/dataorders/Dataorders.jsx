@@ -71,37 +71,6 @@ const Dataorders = () => {
   }, []);
 
 
-<<<<<<< Updated upstream
-  useEffect(() => {
-
-    const unsub = onSnapshot(
-    
-      collection(db, "AdminPanelUsers"),
-      (snapShot) => {
-        
-        let list = [];
-        snapShot.docs.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() });
-        });
-        setData(list);
-
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-     
-    return () => {
- 
-      unsub();
-      
-    };
-    setloading(false)
-
-  }, []);
-
-=======
->>>>>>> Stashed changes
 
 
 
