@@ -1,5 +1,7 @@
 import "./datatable.scss";
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import {   getFirestore, query, setDoc } from 'firebase/firestore'
+
 import { userColumns, userRows } from "../../datatablesource";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -16,7 +18,7 @@ import Spiner from "../Spiner/Spiner"
 
 const Datatable = () => {
   const [data, setData] = useState([]);
-  const [listorders, setlistorders] = useState([]);
+  const [listorders, setlistorders] = useState();
 
   const [loading, setloading] = useState(false);
   const navigate = useNavigate();
@@ -51,7 +53,8 @@ const Datatable = () => {
         
         let list = [];
         snapShot.docs.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() });
+          console.log(doc);
+          list.push({ id: doc.id, ...doc.data()});
          });
         setData(list);
        
@@ -70,9 +73,7 @@ const Datatable = () => {
 
   }, []);
 
-
-  
-   
+ 
   
  
   const handleDelete = async (id) => {
@@ -89,14 +90,31 @@ const Datatable = () => {
       headerName: "Orders",
       width: 200,
       renderCell: (params) => {
-        const numorder =listorders.filter(  
-          item=>  item.owner==params.row.id
-          ).length
-          // console.log(numorder)
-          // console.log(params.row.id )
+        let numorder ;
+        data.map(async (elem)=>{
+          const workQ = query(collection(db, `AdminPanelUsers/${elem.id}/orders`))
+         const workDetails = await getDocs(workQ)
+         let listor=[]
+         console.log(workDetails.docs)
+          
+
+         workDetails.docs.map(
+          (doc)=>
+          { 
+            listor.push({ id: doc.id, ...doc.data() });
+            setlistorders([...listor])
+
+         }
+      )
+            console.log("eeeeeeeeeeeeeeeeee")
+            console.log(listorders)
+
+            numorder =listorders.filter((item) => item.id == params.row.id).length
+         
+        })
         return (
           <div className="orders">
-             {numorder}
+             {numorder} 4
           </div>
         );
       },
@@ -114,7 +132,7 @@ const Datatable = () => {
              <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
-            >
+                >
               Delete
             </div>
           </div>
