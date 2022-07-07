@@ -82,3 +82,16 @@
     }
   }
 }
+.cellAction {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+.deleteButton1 {
+  border-radius: 5px;
+  width: 120px;
+  color: rgb(199, 4, 4);
+  border: 1px solid rgba(238, 27, 27, 0.6);
+  cursor: pointer;
+}
+
+}
