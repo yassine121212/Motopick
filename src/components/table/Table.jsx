@@ -25,8 +25,7 @@ const List = ({id}) => {
             ...doc.data(), id:doc.id
         }))
         setorders(workInfo);
-      }
-    , [id]);
+      }, [id]);
   
   
   return (

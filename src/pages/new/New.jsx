@@ -112,7 +112,7 @@ const New = ({ inputs, title }) => {
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
-                <input
+                <input   
                   type="file"
                   id="file"
                   onChange={(e) => setFile(e.target.files[0])}

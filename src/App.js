@@ -1,6 +1,7 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
+import Drivers from "./pages/drivers/drivers";
 import Orders from "./pages/Orders/Orders";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
@@ -72,13 +73,13 @@ function App() {
              
             
             </Route>
-            <Route path="products">
+            <Route path="drivers">
               <Route
                 index
                 element={
                   <RequireAuth>
-                    <List />
-                  </RequireAuth>
+                  <Drivers/>        
+                    </RequireAuth>
                 }
               />
               <Route

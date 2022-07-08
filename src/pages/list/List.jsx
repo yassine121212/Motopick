@@ -7,7 +7,8 @@ import { collection,getDoc,getDocs ,doc} from "firebase/firestore";
 import { db } from "../../firebase";
 const List = ({id}) => {
   const [orders, setorders] = useState([])
-async function fetchorders(){const orders = collection(db, `users/${id}/orders`)
+async function fetchorders(){
+  const orders = collection(db, `users/${id}/orders`)
        const ordersder = await getDocs(orders)
        console.log(ordersder)
        const workInfo = ordersder.docs.map((doc)=>({

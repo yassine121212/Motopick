@@ -11,6 +11,8 @@ function getAge(dateString)
     }
     return age;
 }
+
+
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
@@ -53,7 +55,7 @@ export const userColumns = [
   {
     field: "gender",
     headerName: "Gender",
-    width: 160,
+    width: 100,
     // renderCell: (params) => {
     //   return (
     //     <div className={`cellWithStatus ${params.row.male ? "true" :"false"}`}>

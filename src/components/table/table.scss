@@ -9,21 +9,23 @@
   .status {
     padding: 5px;
     border-radius: 5px;
+    font-weight: 900;
     &.succeed {
-      color: green;
-      background-color: rgba(0, 128, 0, 0.151);
+      color: rgb(29, 165, 29);
+      background-color: rgb(253, 253, 253);
     }
     &.scheduled {
-      color: rgb(89, 230, 194);
-      background-color: rgba(189, 189, 3, 0.103);
+      
+      color: rgb(4, 61, 146);
+      background-color: rgb(253, 253, 253);
     }
     &.inprogress {
-      color: goldenrod;
-      background-color: rgba(189, 189, 3, 0.103);
+      color: rgb(132, 153, 12);
+      background-color: rgb(253, 253, 253);
     }
     &.failed {
       color: rgb(255, 27, 27);
-      background-color: rgba(189, 189, 3, 0.103);
+      background-color: rgb(253, 253, 253);
     }
   }
 }

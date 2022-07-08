@@ -1,7 +1,6 @@
-import "./datatable.scss";
+import "./Datadrivers.scss";
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import {   getFirestore, query, setDoc } from 'firebase/firestore'
-
 import { userColumns, userRows } from "../../datatablesource";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -13,12 +12,11 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "../../firebase";
-import Spiner from "../Spiner/Spiner"
+import Spiner  from "../Spiner/Spiner"
 import TableRow from "@mui/material/TableRow";
 import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 
-const Datatable = () => {
+const Datadrivers = () => {
   const [data, setData] = useState([]);
   const [listorders, setlistorders] = useState();
 
@@ -32,9 +30,9 @@ const Datatable = () => {
   // console.log(collection(db, "users").Doc("2BsvvTXA8vOMKaY213YwqUimYbH2"))
    
   useEffect(() => {
-
+ 
     const unsub = onSnapshot(
-
+    
       collection(db, "AdminPanelUsers"),
       (snapShot) => {
         
@@ -43,19 +41,17 @@ const Datatable = () => {
           console.log(doc);
           list.push({ id: doc.id, ...doc.data()});
          });
-         let listusers =list.filter((item) => item.type !=='driver')
+       let listusers =list.filter((item) => item.type =='driver')
 
         setData(listusers);
-        setloading('true')
-        console.log(loading)
+        setloading(true)
 
       },
       (error) => {
         console.log(error);
       }
     );
-    
-
+     
     return () => {
  
       unsub();
@@ -113,7 +109,7 @@ const Datatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 150,
+      width: 200,
       renderCell: (params) => {
         return (
           <div className="cellAction">
@@ -135,22 +131,19 @@ const Datatable = () => {
   
   return (
     <div className="datatable">
-      <div className="datatableTitle">
+      {/* <div className="datatableTitle">
         Add New User
         <Link to="/users/new" className="link">
           Add New
         </Link>
-      </div>
- <TableRow className="cc"  > TOTAL DES CLIENTS : {data.length}
+      </div> */}
+      <TableRow className="cc"  > TOTAL DES DRIVERS : {data.length}
             </TableRow>     
       
       {!loading && (
-       
-        <CircularProgress  color="success" className="spiner" />
-       
-      )}
-      {loading && (
-    <DataGrid
+       <CircularProgress  color="success" className="spiner" />
+       )}
+      {loading && (<DataGrid
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
@@ -160,11 +153,11 @@ const Datatable = () => {
         components={{ Toolbar: GridToolbar }} 
 
       />)}
-          
+      
 
      
     </div>
   );
 };
 
-export default Datatable;
+export default Datadrivers;

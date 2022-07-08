@@ -11,6 +11,9 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import DriveEtaIcon from '@mui/icons-material/DriveEta';
+import TakeoutDiningOutlinedIcon from '@mui/icons-material/TakeoutDiningOutlined';
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
@@ -43,23 +46,25 @@ const Sidebar = () => {
               <span>Users</span>
             </li>
           </Link>
-          <Link to="/products" style={{ textDecoration: "none" }}>
+          <Link to="/Drivers" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
-              <span>Products</span>
+              <DriveEtaIcon className="icon" />
+              <span>Drivers</span>
             </li>
           </Link>
           <Link to="/orders" style={{ textDecoration: "none" }}>
           <li>
-            <CreditCardIcon className="icon" />
+            <TakeoutDiningOutlinedIcon className="icon" />
             <span>Orders</span>
           </li>
           </Link>
+          <Link to="#" style={{ textDecoration: "none" }}>
 
           <li>
-            <LocalShippingIcon className="icon" />
-            <span>Delivery</span>
+            <AdminPanelSettingsOutlinedIcon className="icon" />
+            <span>Admin</span>
           </li>
+         </Link> 
           <p className="title">USEFUL</p>
           <li>
             <InsertChartIcon className="icon" />
