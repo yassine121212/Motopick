@@ -4,6 +4,7 @@ import List from "./pages/list/List";
 import Drivers from "./pages/drivers/drivers";
 import Orders from "./pages/Orders/Orders";
 import Single from "./pages/single/Single";
+import SingleDriver from "./pages/singledriver/SingleDriver";
 import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
@@ -90,23 +91,21 @@ function App() {
                 }
               />
               <Route
-                path="new"
+                path=":DriverId"
                 element={
                   <RequireAuth>
-                    <New
-                      inputs={productInputs}
-                      title="Add New Product"
-                    />
+                    <SingleDriver/>
                   </RequireAuth>
                 }
               />
+               
             </Route>
             <Route
               path="Admin"
               element={
                 <RequireAuth>
-                     <Admin />
-                 </RequireAuth>
+                  <Admin />
+                </RequireAuth>
               }
             />
           </Route>

@@ -40,14 +40,12 @@ const Datatable = () => {
         
         let list = [];
         snapShot.docs.forEach((doc) => {
-          console.log(doc);
-          list.push({ id: doc.id, ...doc.data()});
+           list.push({ id: doc.id, ...doc.data()});
          });
  
         setData(list);
         setloading('true')
-        console.log(loading)
-
+ 
       },
       (error) => {
         console.log(error);

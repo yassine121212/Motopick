@@ -20,8 +20,7 @@ const List = ({id}) => {
      
         const orders = collection(db, `AdminPanelUsers/${id}/orders`)
         const ordersder = await getDocs(orders)
-        console.log(ordersder)
-        const workInfo = ordersder.docs.map((doc)=>({
+         const workInfo = ordersder.docs.map((doc)=>({
             ...doc.data(), id:doc.id
         }))
         setorders(workInfo);

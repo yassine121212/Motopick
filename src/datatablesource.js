@@ -76,7 +76,7 @@ export const userColumns = [
 ];
 
 export const ordersColumns = [
-  { field: "uid", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", width: 230 },
   {
     field: "status",
     headerName: "status",

@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 import { useState,useEffect } from "react";
 import { collection,getDoc,getDocs ,doc,updateDoc} from "firebase/firestore";
 import { db } from "../../firebase";
-
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -40,8 +39,7 @@ const navigate = useNavigate();
 
 const updateUser=async(id,blackListed)=>{
   const userDoc=doc(db,"AdminPanelUsers",id);
-  console.log(blackListed)
-    const newFields={blackListed:!blackListed};
+     const newFields={blackListed:!blackListed};
     await updateDoc(userDoc,newFields);
 window.location.reload()
 
@@ -53,13 +51,11 @@ window.location.reload()
     
          const orders = collection(db, `AdminPanelUsers/${id}/orders`)
         const ordersder = await getDocs(orders)
-        console.log(ordersder)
-        const workInfo = ordersder.docs.map((doc)=>({
+         const workInfo = ordersder.docs.map((doc)=>({
             ...doc.data(), id:doc.id
         }))
         setorders(workInfo);
-    console.table(workInfo)
-    
+     
   }, [id]);
   
   return (
