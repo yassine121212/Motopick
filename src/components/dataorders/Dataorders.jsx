@@ -45,12 +45,11 @@ const Dataorders = () => {
         
         let list = [];
         snapShot.docs.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() });
+          list.push({...doc.data() });
         });
         setData(list);
 
-        console.log(list);
-      },
+       },
       
       (error) => {
         console.log(error);
@@ -80,8 +79,7 @@ const Dataorders = () => {
         const workDetails = await getDocs(workQ)
 
         //  console.log("ccccccccccc");
-        console.log(workDetails);
-
+ 
         workDetails.docs.map(
             (doc)=>
             { 
