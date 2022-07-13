@@ -43,9 +43,8 @@ const Datatable = () => {
           console.log(doc);
           list.push({ id: doc.id, ...doc.data()});
          });
-         let listusers =list.filter((item) => item.type !=='driver')
-
-        setData(listusers);
+ 
+        setData(list);
         setloading('true')
         console.log(loading)
 
