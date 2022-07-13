@@ -67,19 +67,12 @@ const Datatable = () => {
  
   
  
-  const handleDelete = async (id) => {
-    try {
-      await deleteDoc(doc(db, "AdminPanelUsers", id));
-      setData(data.filter((item) => item.id !== id));
-    } catch (err) {
-      console.log(err);
-    }
-  };
+
 
   const actionColumn = [
-    { field: "order",
-      headerName: "Orders",
-      width: 100,
+    // { field: "order",
+    //   headerName: "Orders",
+    //   width: 100,
       // renderCell: (params) => {
       //   let numorder ;
       //   data.map(async (elem)=>{
@@ -109,7 +102,7 @@ const Datatable = () => {
         //   </div>
         // );
       // },
-    },
+    // },
     {
       field: "action",
       headerName: "Action",
@@ -120,12 +113,7 @@ const Datatable = () => {
             <div onClick={()=>toview(params.row.id)} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </div>
-             <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-                >
-              Delete
-            </div>
+           
           </div>
         );
       },
@@ -135,12 +123,7 @@ const Datatable = () => {
   
   return (
     <div className="datatable">
-      <div className="datatableTitle">
-        Add New User
-        <Link to="/users/new" className="link">
-          Add New
-        </Link>
-      </div>
+      
  <TableRow className="cc"  > TOTAL DES CLIENTS : {data.length}
             </TableRow>     
       

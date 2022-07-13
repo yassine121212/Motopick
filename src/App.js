@@ -58,17 +58,7 @@ function App() {
                   </RequireAuth>
                 }
               />
-              <Route
-                path="new"
-                element={
-                  <RequireAuth>
-                    <New
-                      inputs={userInputs}
-                      title="Add New User"
-                    />
-                  </RequireAuth>
-                }
-              />
+            
             </Route>
             <Route path="orders">
               <Route
@@ -101,14 +91,27 @@ function App() {
                 }
               />
             </Route>
-            <Route
-              path="Admin"
+            <Route path="Admin">
+              <Route
+               index
               element={
                 <RequireAuth>
                      <Admin />
                  </RequireAuth>
               }
             />
+            <Route
+                path="new"
+                element={
+                  <RequireAuth>
+                    <New
+                      inputs={userInputs}
+                      title="Add New admin"
+                    />
+                  </RequireAuth>
+                }
+              />
+          </Route>
           </Route>
         </Routes>
       </BrowserRouter>

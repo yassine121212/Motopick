@@ -104,4 +104,43 @@ export const ordersColumns = [
   },
  
 ];
+export const adminColumns = [
+  { field: "id", headerName: "ID", width: 100 },
+  {
+    field: "nom",
+    headerName: "nom",
+    width: 100,
+  },
+  
+  {
+    field: "prenom",
+    headerName: "Prenom",
+    width: 100,
+  },
+  
+  {
+    field:"email",
+    headerName: "Email",
+    width: 200,
+           
+          
+  
+  },
+  {
+    field: "musers",
+    headerName: "Mange users",
+    width: 120,
+  },
+  
+  {
+    field: "mdrivers",
+    headerName: "Mange drivers",
+    width: 120,
+  },
+  {
+    field: "mprices",
+    headerName: "Mange prices",
+    width: 120,
+  },
+];
 
