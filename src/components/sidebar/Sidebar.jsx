@@ -58,8 +58,8 @@ const Sidebar = () => {
             <span>Orders</span>
           </li>
           </Link>
-          <Link to="#" style={{ textDecoration: "none" }}>
-
+          <Link to="/Admin" style={{ textDecoration: "none" }}>
+    
           <li>
             <AdminPanelSettingsOutlinedIcon className="icon" />
             <span>Admin</span>

@@ -11,6 +11,7 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
+import Admin from "./pages/Admin/Admin";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -22,11 +23,16 @@ function App() {
   };
 
   return (
-    <div className={darkMode ? "app dark" : "app"}>
+    <div
+      className={darkMode ? "app dark" : "app"}
+    >
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route path="login" element={<Login />} />
+            <Route
+              path="login"
+              element={<Login />}
+            />
             <Route
               index
               element={
@@ -56,7 +62,10 @@ function App() {
                 path="new"
                 element={
                   <RequireAuth>
-                    <New inputs={userInputs} title="Add New User" />
+                    <New
+                      inputs={userInputs}
+                      title="Add New User"
+                    />
                   </RequireAuth>
                 }
               />
@@ -70,23 +79,13 @@ function App() {
                   </RequireAuth>
                 }
               />
-             
-            
             </Route>
             <Route path="drivers">
               <Route
                 index
                 element={
                   <RequireAuth>
-                  <Drivers/>        
-                    </RequireAuth>
-                }
-              />
-              <Route
-                path=":productId"
-                element={
-                  <RequireAuth>
-                    <Single />
+                    <Drivers />
                   </RequireAuth>
                 }
               />
@@ -94,11 +93,22 @@ function App() {
                 path="new"
                 element={
                   <RequireAuth>
-                    <New inputs={productInputs} title="Add New Product" />
+                    <New
+                      inputs={productInputs}
+                      title="Add New Product"
+                    />
                   </RequireAuth>
                 }
               />
             </Route>
+            <Route
+              path="Admin"
+              element={
+                <RequireAuth>
+                     <Admin />
+                 </RequireAuth>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>
