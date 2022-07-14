@@ -23,7 +23,9 @@ export const MotoProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("user")) ||
       null
   );
+  const [userf,setuserf]=useState();
   const [allUsers, setAllUsers] = useState([]);
+  const [alladmins, setalladmins] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
   const imagesListRef = ref(
     storage,
@@ -47,7 +49,6 @@ export const MotoProvider = ({ children }) => {
         })
       );
     };
-
     getAllUsers();
     listAll(imagesListRef).then((response) => {
       response.items.forEach((item) => {
@@ -57,13 +58,39 @@ export const MotoProvider = ({ children }) => {
       });
     });
   }, [user]);
- 
+   useEffect(() => {
+    const getalladmins = async () => {
+      const querySnapshot = await getDocs(
+        collection(db, "Admins")
+      );
 
+      setalladmins(
+        querySnapshot.docs.map((doc) => {
+          return {
+            
+            data: {
+              ...doc.data(),
+            },
+          };
+        })
+      );
+    };
+    getalladmins();
+  
+  }, [user]);
+  useEffect(()=>{
+    const admin= alladmins.filter((items)=>(
+      items.data.email==user.email))
+    setuserf(admin)
+    console.log(admin)
+  }
+  ,[alladmins])
   return (
     <MotoContext.Provider
       value={{
         allUsers,
         imageUrls,
+        userf
       }}
     >
       {children}

@@ -45,7 +45,7 @@ const Dataorders = () => {
         
         let list = [];
         snapShot.docs.forEach((doc) => {
-          list.push({...doc.data() });
+          list.push({id: doc.id, ...doc.data()});
         });
         setData(list);
 
@@ -76,19 +76,17 @@ const Dataorders = () => {
  
        data.map(async (elem)=>{
         const workQ = query(collection(db, `AdminPanelUsers/${elem.id}/orders`))
-        const workDetails = await getDocs(workQ)
+        const workDetails = await getDocs(workQ);
 
         //  console.log("ccccccccccc");
  
-        workDetails.docs.map(
-            (doc)=>
-            { 
-              listor.push({ id: doc.id, ...doc.data() });
+        workDetails.docs.map( (doc)=>{ 
+              listor.push({ id: doc.id, ...doc.data() })
               setDataor([...listor])
               setloading('true')
 
            }
-        )
+        );
        
         
        })
@@ -101,12 +99,12 @@ const Dataorders = () => {
     <div  className="datatable">
         <TableRow className="cc"  > TOTAL DES COMMANDES : {dataor.length}
             </TableRow>     
-            {!loading && (
+            {/* {!loading && ( */}
        
-       <CircularProgress  color="success" className="spiner" />
+       {/* <CircularProgress  color="success" className="spiner" /> */}
       
-     )}
-     {loading && (
+     {/* )} */}
+     {/* {loading && ( */}
     <DataGrid
         className="datagrid"
         rows={dataor}
@@ -116,9 +114,11 @@ const Dataorders = () => {
         checkboxSelection
         components={{ Toolbar: GridToolbar }} 
 
-      />)}
+      />
+      {/* )} */}
     
     </div>
   );
-       }   
+       } 
+        
 export default Dataorders;

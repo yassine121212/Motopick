@@ -16,14 +16,20 @@ import TakeoutDiningOutlinedIcon from '@mui/icons-material/TakeoutDiningOutlined
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext } from "react";
+import { useContext, useEffect,useState } from "react";
 import {AuthContext} from "../../context/AuthContext"
 
+import { MotoContext } from "../../context/MotoContext";
 
 const Sidebar = () => {
+  const { userf } = useContext(MotoContext);
+  const [usertest,setusertest]=useState()
   const { dispatch } = useContext(DarkModeContext);
   const auth = useContext(AuthContext);
-
+  // console.log(userf[0].data.musers)
+  // useEffect(() => {
+  //   setusertest(userf[0])
+  // },[userf])
   return (
     <div className="sidebar">
       <div className="top">
@@ -40,14 +46,22 @@ const Sidebar = () => {
             <span>Dashboard</span>
           </li>
           <p className="title">LISTS</p>
+          
+          {/* {userf[0].data.musers&&(<Link to="/users" style={{ textDecoration: "none" }}>
+            <li >
+              <PersonOutlineIcon className="icon" />
+              <span>Users</span>
+            </li>
+          </Link>)} */}
+          
           <Link to="/users" style={{ textDecoration: "none" }}>
-            <li>
+            <li >
               <PersonOutlineIcon className="icon" />
               <span>Users</span>
             </li>
           </Link>
           <Link to="/Drivers" style={{ textDecoration: "none" }}>
-            <li>
+            <li   >
               <DriveEtaIcon className="icon" />
               <span>Drivers</span>
             </li>
