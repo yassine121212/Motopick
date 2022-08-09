@@ -1,0 +1,25 @@
+{
+  "functions": {
+    "source": "functions"
+  },
+  "emulators": {
+    "auth": {
+      "port": 9091
+    },
+    "functions": {
+      "port": 5002
+    },
+    "firestore": {
+      "port": 8047
+    },
+    "pubsub": {
+      "port": 4033
+    },
+    "ui": {
+      "enabled": true
+    },
+    "database": {
+      "port": 9000
+    }
+  }
+}

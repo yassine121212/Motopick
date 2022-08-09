@@ -35,6 +35,59 @@ export const userInputs = [
    
     
   ];
+export const UpdateInputs = [
+    {
+      id: 1,
+      label: "param",
+      type: "text",
+      placeholder: "type1",
+      name:"param"
+    },
+    {
+      id: 2,
+      label: "label",
+      type: "text",
+      placeholder: "john_doe",
+      name:"label"
+    },
+   
+    {
+      id: 3,
+      label: "value1",
+      type: "number",
+      placeholder: "3dh",
+      name:"value1"
+
+    },
+   
+    {
+      id: 4,
+      label: "value2",
+      type: "number",
+      placeholder: "1",
+      name:"value2"
+
+
+    },
+    {
+      id: 4,
+      label: "value2",
+      type: "number",
+      placeholder: "1",
+      name:"value2"
+
+
+    },
+    {
+      id: 5,
+      label: "applicable value",
+      type: "number",
+      placeholder: "2",
+      name:"applicable_value"
+    },
+   
+    
+  ];
   
   export const productInputs = [
     {

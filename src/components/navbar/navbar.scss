@@ -1,4 +1,11 @@
 .navbar {
+
+  .item1{
+    font-size: 20px;
+    font-weight: bold;
+    color: #579900;
+    margin: 0.2cm;
+  }
   height: 50px;
   border-bottom: 0.5px solid rgb(231, 228, 228);
   display: flex;
@@ -35,6 +42,7 @@
       align-items: center;
 
       .item {
+        margin: 0.2cm;
         display: flex;
         align-items: center;
         margin-right: 20px;

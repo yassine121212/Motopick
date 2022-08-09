@@ -42,6 +42,7 @@
         padding: 5px;
         border-radius: 5px;
         cursor: pointer;
+        min-width: fit-content;
       }
     }
   
@@ -55,6 +56,11 @@
         border-radius: 50%;
         object-fit: cover;
         margin-right: 20px;
+       
+        
+      }
+      .name{
+        margin-left: 40px;
       }
     }
   
@@ -75,7 +81,7 @@
         color: crimson;
       }
     }
-  
+    
     .cellAction {
       display: flex;
       align-items: center;
@@ -98,4 +104,6 @@
       }
     }
   }
-  
+   .status_order {
+     color: red;
+   }

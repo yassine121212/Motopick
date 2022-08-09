@@ -5,14 +5,24 @@
     flex: 6;
 
     .widgets,
-    .charts {
+    .charts,
+    .stats {
       display: flex;
       padding: 20px;
       gap: 20px;
     }
 
-    .charts {
+    .charts,
+    .stats {
       padding: 5px 20px;
+      
+    }
+    .stats1{
+      display: flex;
+      padding: 20px;
+      gap: 10px;
+      padding: 5px 20px;
+
     }
 
     .listContainer {
@@ -25,7 +35,12 @@
         font-weight: 500;
         color: gray;
         margin-bottom: 15px;
+     
       }
     }
   }
+}
+
+.nonotify {
+  visibility: hidden;
 }

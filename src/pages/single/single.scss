@@ -1,9 +1,13 @@
+
+ 
+
+
 .single {
   display: flex;
   width: 100%;
-  .singleContainer {
-     flex: 6;
 
+  .singleContainer {
+    flex: 6;
     .top {
       padding: 20px;
       display: flex;
@@ -16,17 +20,7 @@
         padding: 20px;
         position: relative;
 
-        .editButton {
-          position: absolute;
-          top: 0;
-          right: 0;
-          padding: 5px;
-          font-size: 12px;
-          color: #7451f8;
-          background-color: #7551f818;
-          cursor: pointer;
-          border-radius: 0px 0px 0px 5px;
-        }
+
 
         .item {
           display: flex;
@@ -37,9 +31,12 @@
             height: 100px;
             border-radius: 50%;
             object-fit: cover;
+            position: absolute;
           }
 
           .details {
+            margin-left: 1cm;
+
             .itemTitle {
               margin-bottom: 10px;
               color: #555;
@@ -48,15 +45,22 @@
             .detailItem {
               margin-bottom: 10px;
               font-size: 14px;
+              align-content: flex-end;
 
               .itemKey {
                 font-weight: bold;
                 color: gray;
-                margin-right: 5px;
+                // margin-right: 5px;
+
+              }
+
+              .stars {
+                align-self: start;
               }
 
               .itemValue {
                 font-weight: 300;
+
               }
             }
           }
@@ -82,16 +86,67 @@
     }
   }
 }
+
 .cellAction {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 15px;
-.deleteButton1 {
-  border-radius: 5px;
-  width: 120px;
-  color: rgb(199, 4, 4);
-  border: 1px solid rgba(238, 27, 27, 0.6);
-  cursor: pointer;
-}
+ 
+  
 
+  .deleteButton1 {
+    border-radius: 5px;
+    width: 120px;
+    color: rgb(199, 4, 4);
+    border: 1px solid rgba(238, 27, 27, 0.6);
+    cursor: pointer;
+  }
+
+  .validate {
+    border-radius: 5px;
+    width: 140px;
+    color: rgb(31, 129, 6);
+    border: 1px solid rgb(31, 129, 6);
+    cursor: pointer;
+  }
+
+  .Disprove {
+    border-radius: 5px;
+    width: 130px;
+    color: rgb(83, 83, 83);
+    border: 1px solid rgb(83, 83, 83);
+    cursor: pointer;
+  }
+  
 }
+.cellAction1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 29px;
+    .deleteButton1 {
+      border-radius: 5px;
+      width: 120px;
+      color: rgb(199, 4, 4);
+      border: 1px solid rgba(238, 27, 27, 0.6);
+      cursor: pointer;
+    }
+  
+    .validate {
+      border-radius: 5px;
+      width: 140px;
+      color: rgb(31, 129, 6);
+      border: 1px solid rgb(31, 129, 6);
+      cursor: pointer;
+    }
+  
+    .Disprove {
+      border-radius: 5px;
+      width: 130px;
+      color: rgb(83, 83, 83);
+      border: 1px solid rgb(83, 83, 83);
+      cursor: pointer;
+    }
+  }

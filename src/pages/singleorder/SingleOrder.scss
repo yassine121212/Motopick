@@ -1,0 +1,85 @@
+.single {
+    display: flex;
+    width: 100%;
+    .singleContainer {
+       flex: 6;
+  
+      .top {
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+  
+        .left {
+          flex: 1;
+          -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+          box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+          padding: 20px;
+          position: relative;
+  
+          
+  
+          .item1 {
+            display: flex;
+            gap: 20px;
+            margin-left: 100px;
+  
+           
+            .details {
+              .itemTitle {
+                margin-bottom: 10px;
+                color: #555;
+              }
+  
+              .detailItem {
+                margin-bottom: 10px;
+                font-size: 14px;
+  align-content: flex-end;
+                .itemKey {
+                  font-weight: bold;
+                  color: gray;
+                  // margin-right: 5px;
+                  
+                }
+  .stars{
+  align-self: start;}
+                .itemValue {
+                  font-weight: 300;
+                 
+                }
+              }
+            }
+          }
+        }
+  
+       
+      }
+  
+      .bottom {
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        padding: 20px;
+        margin: 10px 20px;
+      }
+  
+      .title1 {
+        font-size: 25px;
+        color: rgb(3, 95, 23);
+        margin-bottom: 20px;
+        margin-left: 20px;
+      }
+    }
+  }
+  .cellAction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  .deleteButton1 {
+    border-radius: 5px;
+    width: 120px;
+    color: rgb(199, 4, 4);
+    border: 1px solid rgba(238, 27, 27, 0.6);
+    cursor: pointer;
+  }
+  
+  }

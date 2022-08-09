@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { AuthContextProvider } from "./context/AuthContext";
+import { ChartProvider } from "./context/chart";
 import { DarkModeContextProvider } from "./context/darkModeContext";
 import { MotoProvider } from "./context/MotoContext";
 
@@ -10,7 +11,9 @@ ReactDOM.render(
     <DarkModeContextProvider>
       <AuthContextProvider>
         <MotoProvider>
-          <App />
+          <ChartProvider>
+            <App />
+          </ChartProvider>
         </MotoProvider>
       </AuthContextProvider>
     </DarkModeContextProvider>

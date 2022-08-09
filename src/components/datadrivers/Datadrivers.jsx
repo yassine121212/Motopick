@@ -9,6 +9,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import {
+  driversColumns,
   userColumns,
   userRows,
 } from "../../datatablesource";
@@ -43,21 +44,18 @@ const Datadrivers = () => {
 
   useEffect(() => {
     const unsub = onSnapshot(
-      collection(db, "AdminPanelUsers"),
+      collection(db, "drivers"),
       (snapShot) => {
         let list = [];
         snapShot.docs.forEach((doc) => {
-          console.log(doc);
-          list.push({
+           list.push({
             id: doc.id,
             ...doc.data(),
           });
         });
-        let listusers = list.filter(
-          (item) => item.type == "driver"
-        );
+        
 
-        setData(listusers);
+        setData(list);
         setloading(true);
       },
       (error) => {
@@ -70,42 +68,21 @@ const Datadrivers = () => {
     };
   }, []);
 
-  const handleDelete = async (id) => {
-    try {
-      await deleteDoc(
-        doc(db, "AdminPanelUsers", id)
-      );
-      setData(
-        data.filter((item) => item.id !== id)
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const handleDelete = async (id) => {
+  //   try {
+  //     await deleteDoc(
+  //       doc(db, "drivers", id)
+  //     );
+  //     setData(
+  //       data.filter((item) => item.id !== id)
+  //     );
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const actionColumn = [
-    {
-      field: "verified",
-      headerName: "Status",
-      width: 100,
-      renderCell: (params) => {
-        return (
-          <div
-            className={`"status"  ${
-              params.row.verified
-                ? "veri"
-                : "disa"
-            }`}
-          >
-            <span className="textSta">
-              {params.row.verified
-                ? "verified"
-                : "disabled"}
-            </span>
-          </div>
-        );
-      },
-    },
+ 
     {
       field: "action",
       headerName: "Action",
@@ -123,14 +100,7 @@ const Datadrivers = () => {
                 View
               </div>
             </div>
-            <div
-              className="deleteButton"
-              onClick={() =>
-                handleDelete(params.row.id)
-              }
-            >
-              Delete
-            </div>
+            
           </div>
         );
       },
@@ -139,30 +109,14 @@ const Datadrivers = () => {
 
   return (
     <div className="datatable">
-      {/* <div className="datatableTitle">
-        Add New User
-        <Link to="/users/new" className="link">
-          Add New
-        </Link>
-      </div> */}
-      <TableRow className="cc">
-        {" "}
-        TOTAL DES DRIVERS : {data.length}
-      </TableRow>
+      <TableRow className="cc"> TOTAL DES DRIVERS : {data.length}</TableRow>
 
-      {!loading && (
-        <CircularProgress
-          color="success"
-          className="spiner"
-        />
-      )}
+      {!loading && <CircularProgress color="success" className="spiner" />}
       {loading && (
         <DataGrid
           className="datagrid"
           rows={data}
-          columns={userColumns.concat(
-            actionColumn
-          )}
+          columns={driversColumns.concat(actionColumn)}
           pageSize={10}
           rowsPerPageOptions={[9]}
           checkboxSelection

@@ -1,10 +1,10 @@
 import "./datatable.scss";
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import {   getFirestore, query, setDoc } from 'firebase/firestore'
-
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { getFirestore, query, setDoc } from "firebase/firestore";
+import { MotoContext } from "../../context/MotoContext.js";
 import { userColumns, userRows } from "../../datatablesource";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   collection,
   getDocs,
@@ -13,93 +13,48 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "../../firebase";
-import Spiner from "../Spiner/Spiner"
+import Spiner from "../Spiner/Spiner";
 import TableRow from "@mui/material/TableRow";
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const Datatable = () => {
   const [data, setData] = useState([]);
-  const [listorders, setlistorders] = useState();
-
+  const [listusersdeleted, setlistusersdeleted] = useState([]);
   const [loading, setloading] = useState(false);
+  const { allOrders } = useContext(MotoContext);
   const navigate = useNavigate();
 
-  const toview=(id)=>{
+  const toview = (id) => {
     navigate("/users/test", { state: { id } });
-
-  }
-  // console.log(collection(db, "users").Doc("2BsvvTXA8vOMKaY213YwqUimYbH2"))
-   
+  };
   useEffect(() => {
-
     const unsub = onSnapshot(
-
-      collection(db, "AdminPanelUsers"),
+      collection(db, "users"),
       (snapShot) => {
-        
         let list = [];
         snapShot.docs.forEach((doc) => {
-           list.push({ id: doc.id, ...doc.data()});
-         });
- 
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setlistusersdeleted(
+          list.filter((item) => item.is_deleted_account == true)
+        );
+
         setData(list);
-        setloading('true')
- 
+        
+        setloading("true");
       },
       (error) => {
         console.log(error);
       }
     );
-    
 
     return () => {
- 
       unsub();
-      
     };
-
   }, []);
 
- 
-  
- 
-
-
   const actionColumn = [
-    // { field: "order",
-    //   headerName: "Orders",
-    //   width: 100,
-      // renderCell: (params) => {
-      //   let numorder ;
-      //   data.map(async (elem)=>{
-      //     const workQ = query(collection(db, `AdminPanelUsers/${elem.id}/orders`))
-      //    const workDetails = await getDocs(workQ)
-      //    let listor=[]
-      //    console.log(workDetails.docs)
-          
-
-      //    workDetails.docs.map(
-      //     (doc)=>
-      //     { 
-      //       listor.push({ id: doc.id, ...doc.data() });
-      //       setlistorders([...listor])
-
-      //    }
-      // )
-      //       console.log("eeeeeeeeeeeeeeeeee")
-      //       console.log(listorders)
-
-      //       numorder =listorders.filter((item) => item.id == params.row.id).length
-         
-      //   },[data])
-        // return (
-        //   <div className="orders">
-        //      {numorder} 4
-        //   </div>
-        // );
-      // },
-    // },
     {
       field: "action",
       headerName: "Action",
@@ -107,42 +62,61 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <div onClick={()=>toview(params.row.id)} style={{ textDecoration: "none" }}>
+            <div
+              onClick={() => toview(params.row.id)}
+              style={{ textDecoration: "none" }}
+            >
               <div className="viewButton">View</div>
             </div>
-           
           </div>
         );
       },
     },
+    {
+      field: "Orders Amount",
+      headerName: "Montant de commandes",
+      width: 170,
+      renderCell: (params) => {
+          let listorders = [];
+
+           listorders = allOrders.filter(
+            
+            (item) =>(item.customer_uid === params.row.id)
+        );
+        return <div>{listorders.length}</div>;
+      },
+    },
   ];
- 
-  
+
   return (
     <div className="datatable">
-      
- <TableRow className="cc"  > TOTAL DES CLIENTS : {data.length}
-            </TableRow>     
-      
-      {!loading && (
-       
-        <CircularProgress  color="success" className="spiner" />
-       
-      )}
+      <div className="flex justify-between mb-2">
+        <TableRow>
+          {" "}
+          <span className="border-b-2 border-solid border-gray-300">
+            TOTAL ACTIVE CUSTOMERS : {data.length}{" "}
+          </span>
+        </TableRow>
+        <TableRow>
+          <span className="border-b-2 border-solid border-gray-300">
+            {" "}
+            TOTAL CUSTOMERS DELETED : {listusersdeleted?.length}
+          </span>
+        </TableRow>
+      </div>
+
+      {!loading && <CircularProgress color="success" className="spiner" />}
       {loading && (
-    <DataGrid
-        className="datagrid"
-        rows={data}
-        columns={userColumns.concat(actionColumn)}
-        pageSize={10}
-        rowsPerPageOptions={[9]}
-        checkboxSelection
-        components={{ Toolbar: GridToolbar }} 
-
-      />)}
-          
-
-     
+        <DataGrid
+          className="datagrid"
+          rows={data}
+          columns={actionColumn.concat(userColumns)}
+          pageSize={10}
+          rowsPerPageOptions={[9]}
+          checkboxSelection
+          components={{ Toolbar: GridToolbar }}
+        />
+      )}
     </div>
   );
 };

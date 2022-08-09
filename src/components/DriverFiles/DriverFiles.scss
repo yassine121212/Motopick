@@ -3,13 +3,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+   
     padding: 20px;
     margin: 10px 20px;
     justify-content: center;
     width: 100%;
-
+  margin-bottom: 2cm;
     .title {
         color: lightgray;
         margin-bottom: 20px;
@@ -18,10 +17,11 @@
     }
 
     .imgprin {
-
+        
         .forimgprin {
-            height: 11cm;
-            width: 16cm;
+            position: relative;
+            height: 8cm;
+            width: 11cm;
             object-fit: cover;
             width: 100%;
         }
@@ -66,9 +66,10 @@
             padding-top: 0.5cm;
 
             .forotherimg {
+                position: relative;
                 cursor: pointer;
-                height: 1.7cm;
-                width: 2.1cm;
+                height: 1.4cm;
+                width: 1.8cm;
             }
         }
 
@@ -85,3 +86,7 @@
     }
 
 }
+.rec.rec-arrow:disabled {
+    visibility: hidden;
+}
+ 

@@ -38,6 +38,8 @@ const [validation, setValidation] = useState("");
 const [isChecked1, setIsChecked1] = useState(false);
 const [isChecked2, setIsChecked2] = useState(false);
 const [isChecked3, setIsChecked3] = useState(false);
+const [isChecked4, setIsChecked4] = useState(false);
+const [isChecked5, setIsChecked5] = useState(false);
 
 const handleOnChange1 = () => {
   setIsChecked1(!isChecked1);
@@ -48,47 +50,13 @@ const handleOnChange2 = () => {
 const handleOnChange3 = () => {
   setIsChecked3(!isChecked3);
 };
+const handleOnChange4 = () => {
+  setIsChecked4(!isChecked4);
+};
+const handleOnChange5 = () => {
+  setIsChecked5(!isChecked5);
+};
 
-  // useEffect(() => {
-  //   const uploadFile = () => {
-  //     const name = new Date().getTime() + file.name;
-
-  //     console.log(name);
-  //     const storageRef = ref(storage, file.name);
-  //     const uploadTask = uploadBytesResumable(storageRef, file);
-
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapshot) => {
-  //         const progress =
-  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //         console.log("Upload is " + progress + "% done");
-  //         setPerc(progress);
-  //         switch (snapshot.state) {
-  //           case "paused":
-  //             console.log("Upload is paused");
-  //             break;
-  //           case "running":
-  //             console.log("Upload is running");
-  //             break;
-  //           default:
-  //             break;
-  //         }
-  //       },
-  //       (error) => {
-  //         console.log(error);
-  //       },
-  //       () => {
-  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-  //           setData((prev) => ({ ...prev, img: downloadURL }));
-  //         });
-  //       }
-  //     );
-  //   };
-  //   file && uploadFile();
-  // }, [file]);
-
-  console.log(data);
 
   const handleInput = (e) => {
     const name = e.target.name;
@@ -97,10 +65,9 @@ const handleOnChange3 = () => {
     setData({ ...data, [name]: value });
   };
   const [open, setOpen] = React.useState(false);
+  const [open1, setOpen1] = React.useState(false);
 
-  const handleClick = () => {
-   
-  };
+  
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -116,20 +83,19 @@ const handleOnChange3 = () => {
         data.email,
         data.password
       );
-      console.log(res)
-      setValidation("")
-      // await setDoc(doc(db, "Admins", res.user.uid), {
-      //   ...data,
-      //   timeStamp: serverTimestamp(),
-      // });
-      await addDoc(userCollectionRef,{email:data.email,nom:data.nom,prenom:data.prenom,mdrivers:isChecked2,musers:isChecked1,mprices:isChecked3})
+       setValidation("")
+   
+      await addDoc(userCollectionRef,{email:data.email,nom:data.nom,prenom:data.prenom,mdrivers:isChecked2,musers:isChecked1,mprices:isChecked3,morders:isChecked4,mblock:isChecked5,madmin:false,delet:true})
 
       navigate(-1)
 
     } catch (err) {
       
       if(err.code === "auth/invalid-email") {
+
         setValidation("Email format invalid")
+        setOpen(true);
+
       }
       
       if(err.code === "auth/email-already-in-use") {
@@ -151,29 +117,10 @@ const handleOnChange3 = () => {
           <h1>{title}</h1>
         </div>
         <div className="bottom">
-          {/* <div className="left">
-            <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-              }
-              alt=""
-            />
-          </div> */}
+         
           <div className="right">
             <form ref={formRef} onSubmit={handleAdd}>
-              {/* <div className="formInput">
-                <label htmlFor="file">
-                  Image: <DriveFolderUploadOutlinedIcon className="icon" />
-                </label>
-                <input   
-                  type="file"
-                  id="file"
-                  onChange={(e) => setFile(e.target.files[0])}
-                  style={{ display: "none" }}
-                />
-              </div> */}
+          
 
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
@@ -215,6 +162,18 @@ const handleOnChange3 = () => {
       <label for="checkbox-rect3">Manage Prices</label>
     </div>
   </div>   
+  <div class="item">
+    <div class="checkbox-rect">
+      <input type="checkbox" id="checkbox-rect4" name="check3" checked={isChecked4} onChange={handleOnChange4}/>
+      <label for="checkbox-rect4">Manage Orders</label>
+    </div>
+  </div>   
+  <div class="item">
+    <div class="checkbox-rect">
+      <input type="checkbox" id="checkbox-rect5" name="check4" checked={isChecked5} onChange={handleOnChange5}/>
+      <label for="checkbox-rect5">Manage block liste</label>
+    </div>
+  </div>   
    
   </div>
   <button  disabled={per !== null && per < 100} type="submit">
@@ -229,6 +188,11 @@ const handleOnChange3 = () => {
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error"sx={{ width: '100%' }}>
         {validation} !
+        </Alert>
+      </Snackbar>
+            <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success"sx={{ width: '100%' }}>
+       success!
         </Alert>
       </Snackbar>
           </div>
